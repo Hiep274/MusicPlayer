@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">IMusic</string>
+    <string name="base_url">http://192.168.1.102:8000/imusic/</string>
+
+    <string name="x_large">18sp</string>
+    <string name="large">16sp</string>
+    <string name="medium">14sp</string>
+    <string name="small">12sp</string>
+    <string name="xSmall">10sp</string>
+
+    <string name="heading_1">48sp</string>
+    <string name="heading_2">40sp</string>
+    <string name="heading_3">32sp</string>
+    <string name="heading_4">24sp</string>
+    <string name="heading_5">20sp</string>
+    <string name="heading_6">18sp</string>
+    <string name="gredientbg">TODO</string>
+    <string name="title">------</string>
+    <string name="single">---</string>
+    <string name="love">TODO</string>
+    <string name="runtime">--:--</string>
+    <string name="totaltime">--:--</string>
+    <string name="random">TODO</string>
+    <string name="previous">TODO</string>
+    <string name="playorpause">TODO</string>
+    <string name="next">TODO</string>
+    <string name="repeat">TODO</string>
+    <string name="tim">TODO</string>
+
+
+    <string name="zero_time">00:00</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
