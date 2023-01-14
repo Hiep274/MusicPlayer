@@ -57,13 +57,13 @@ public class FragmentTheBest extends Fragment {
                         recyclerViewthebest.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
                         recyclerViewthebest.setAdapter(playlistAdapter);
                     } else {
-                        Toast.makeText(getContext(), "Lỗi tr", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Không có dữ liệu", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
             @Override
             public void onFailure(@NonNull Call<ArrayList<PlaylistHome>> call, @NonNull Throwable t) {
-                Toast.makeText(getContext(), "Lỗi", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Error thebest : ", Toast.LENGTH_SHORT).show();
             }
         });
 

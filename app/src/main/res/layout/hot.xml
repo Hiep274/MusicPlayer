@@ -34,6 +34,7 @@
             android:maxWidth="150dp"
             android:maxLines="2"
             android:text="textview"
+            android:textAlignment="center"
             android:textColor="#B6B6B6"
             android:textSize="20sp" />
 

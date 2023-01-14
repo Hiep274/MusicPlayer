@@ -3,7 +3,8 @@ package com.huce.imuisc.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.os.Handler;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -18,9 +19,6 @@ import com.huce.imuisc.fragment.FragmentSearch;
 public class MainActivity extends AppCompatActivity {
     public static ViewPager viewPager;
     public static TabLayout tabLayout;
-//    private TabLayout tabLayout;
-//    private ViewPager viewPager;
-    private Toast mToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +26,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         tabLayout = findViewById(R.id.myTabLayout);
         viewPager = findViewById(R.id.myViewPager);
-
+        LoadingDialog loadingDialog = new LoadingDialog(this);
+        loadingDialog.show();
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                loadingDialog.dismiss();
+            }
+        }, 3500);
         init();
     }
+
     private void init() {
         MainViewPagerAdapter mainViewPagerAdapter = new MainViewPagerAdapter(getSupportFragmentManager());
         mainViewPagerAdapter.addFragment(new FragmentSearch(), "");

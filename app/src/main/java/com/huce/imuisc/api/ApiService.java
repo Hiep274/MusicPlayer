@@ -2,6 +2,7 @@ package com.huce.imuisc.api;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.huce.imuisc.api.response.ArtistHome;
 import com.huce.imuisc.api.response.Home;
 import com.huce.imuisc.api.response.HomeNewRelease;
@@ -10,9 +11,12 @@ import com.huce.imuisc.api.response.PlaylistHome;
 import com.huce.imuisc.api.response.SearchMulti;
 import com.huce.imuisc.api.response.SongInfo;
 import com.huce.imuisc.api.response.Streaming;
+import com.huce.imuisc.model.Lyric;
+import com.huce.imuisc.model.Song;
+
+
 
 import java.util.ArrayList;
-
 import retrofit2.Call;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.Retrofit;
@@ -60,4 +64,9 @@ public interface ApiService {
     @GET("info-song/{id}")
     Call<SongInfo> getInfoSong(@Path("id") String id);
 
+    @GET("home-lyric/{id}")
+    Call<ArrayList<Lyric>> getLyric(@Path("id") String id);
+
+    @GET("home-recommend/{id}")
+    Call<ArrayList<Song>> getRecommend(@Path("id") String id);
 }

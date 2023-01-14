@@ -57,13 +57,13 @@ public class FragmentNewDay extends Fragment {
                             recyclerViewnewday.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
                             recyclerViewnewday.setAdapter(playlistAdapter);
                         } else {
-                            Toast.makeText(getContext(), "Lỗi tr", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Không có dữ liệu", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
                 @Override
                 public void onFailure(@NonNull Call<ArrayList<PlaylistHome>> call, @NonNull Throwable t) {
-                    Toast.makeText(getContext(), "Lỗi", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Error in fgm newday : ", Toast.LENGTH_SHORT).show();
                 }
             });
 

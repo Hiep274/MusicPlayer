@@ -19,6 +19,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class ListSongAdapter extends RecyclerView.Adapter<ListSongAdapter.ViewHolder>{
 
     Context context;
@@ -62,7 +64,7 @@ public class ListSongAdapter extends RecyclerView.Adapter<ListSongAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView txttenbaihat, txttencasi;
-        ImageView hinhbaihat, tim;
+        CircleImageView hinhbaihat, tim;
         ConstraintLayout cardView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

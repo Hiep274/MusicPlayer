@@ -1,14 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="fill_parent"
     android:layout_height="match_parent"
-    android:scrollbars="none"
-    android:fillViewport="true">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:scrollbars="none">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/linearlayout"
+        android:background="@drawable/custom_backgroud"
         android:orientation="vertical">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarhome"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="24dp"
+            android:background="#091A22"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            android:gravity="center_horizontal" />
+        <fragment
+            android:name="com.huce.imuisc.fragment.FragmentTopic"
+            android:id="@+id/fragmenttopic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </fragment>
+        <fragment
+            android:name="com.huce.imuisc.fragment.FragmentArtist"
+            android:id="@+id/fragmentartist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </fragment>
         <fragment
             android:name="com.huce.imuisc.fragment.FragmentTheBest"
             android:id="@+id/fragmentthebest"
@@ -33,23 +56,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </fragment>
-        <fragment
-            android:name="com.huce.imuisc.fragment.FragmentArtist"
-            android:id="@+id/fragmentartist"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </fragment>
+
         <fragment
             android:name="com.huce.imuisc.fragment.FragmentHot"
             android:id="@+id/fragmenthot"
+            android:layout_marginBottom="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </fragment>
-        <fragment
-            android:name="com.huce.imuisc.fragment.FragmentTopic"
-            android:id="@+id/fragmenttopic"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </fragment>
+
     </LinearLayout>
 </ScrollView>

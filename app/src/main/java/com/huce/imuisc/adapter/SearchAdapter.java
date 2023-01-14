@@ -19,6 +19,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder>{
 
     Context context;
@@ -64,7 +66,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView txttentimkiem, txtcasitimkiem;
-        ImageView imganhtimkiem;
+        CircleImageView imganhtimkiem;
         ConstraintLayout cardView;
 
         public ViewHolder(@NonNull View itemView) {

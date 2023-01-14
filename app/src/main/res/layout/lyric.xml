@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/constraintLayoutLyric"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/textviewlyric"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/molengo"
+        android:textAlignment="center"
+        android:layout_margin="7dp"
+        android:text="Lơi bài hát"
+        android:textColor="#FFFFFF"
+        android:textSize="21sp"
+        android:maxLines="2"
+        app:layout_constraintTop_toTopOf="parent" />
+</LinearLayout>

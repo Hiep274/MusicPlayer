@@ -1,5 +1,6 @@
 package com.huce.imuisc.fragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -17,6 +18,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.appcompat.widget.SearchView;
+
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +31,6 @@ import com.huce.imuisc.api.ApiService;
 import com.huce.imuisc.api.response.SearchMulti;
 import com.huce.imuisc.model.Artist;
 import com.huce.imuisc.model.PlaylistBest;
-import com.huce.imuisc.model.Song;
 import com.huce.imuisc.model.SongList;
 
 import java.util.ArrayList;
@@ -43,6 +45,7 @@ public class FragmentSearch extends Fragment {
     androidx.appcompat.widget.Toolbar toolbar;
     RecyclerView recyclerViewArtist, recyclerViewPlaylist, recyclerViewSong;
     TextView textViewnull,textArtist, textPlaylist, textSong;
+    ImageView imageviewtimkiemnull;
     SearchAdapter timKiemAdapter;
     PlaylistHomeAdapter playlistHomeAdapter;
     ArtistAdapter artistAdapter;
@@ -58,12 +61,16 @@ public class FragmentSearch extends Fragment {
         recyclerViewPlaylist = view.findViewById(R.id.recyclerViewSearchPlaylist);
         recyclerViewSong = view.findViewById(R.id.recyclerViewSearchSong);
         textViewnull = view.findViewById(R.id.textviewtimkiemnull);
+        imageviewtimkiemnull = view.findViewById(R.id.imageviewtimkiemnull);
+        textViewnull.setVisibility(View.GONE);
+        imageviewtimkiemnull.setVisibility(View.GONE);
         textArtist = view.findViewById(R.id.textArtist);
         textPlaylist = view.findViewById(R.id.textPlaylist);
         textSong = view.findViewById(R.id.textSong);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         setHasOptionsMenu(true);
-        return  view;
+
+        return view;
     }
 
 
@@ -82,16 +89,8 @@ public class FragmentSearch extends Fragment {
             @Override
             public boolean onQueryTextChange(String s) {
 
-                recyclerViewArtist.setBackgroundColor(Color.BLACK);
-                recyclerViewPlaylist.setBackgroundColor(Color.BLACK);
-                recyclerViewSong.setBackgroundColor(Color.BLACK);
                 if (!s.trim().equals("")){
-                    textArtist.setText("Nghệ sĩ");
-                    textPlaylist.setText("Danh sách phát");
-                    textSong.setText("Bài hát");
-                    SearchSong(s);
-                    SearchPlaylist(s);
-                    SearchArtist(s);
+                    Search(s);
                 }
                 return true;
             }
@@ -99,84 +98,53 @@ public class FragmentSearch extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
-    private void SearchSong(String query){
+    private void Search(String query){
         ApiService.apiService.getHomeSearch(query).enqueue(new Callback<SearchMulti>() {
             @Override
             public void onResponse(Call<SearchMulti> call, Response<SearchMulti> response) {
                 if (response.isSuccessful()){
                     SearchMulti searchMulti = response.body();
                     if (searchMulti != null){
+                        textViewnull.setVisibility(View.GONE);
+                        imageviewtimkiemnull.setVisibility(View.GONE);
                         mangbaihat = searchMulti.getSongs();
+                        mangplaylist = searchMulti.getPlaylists();
+                        mangartist = searchMulti.getArtists();
+
                         if (mangbaihat.size() > 0){
                             timKiemAdapter = new SearchAdapter(getActivity(), mangbaihat);
                             recyclerViewSong.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
                             recyclerViewSong.setAdapter(timKiemAdapter);
-                            textViewnull.setVisibility(View.GONE);
                             recyclerViewSong.setVisibility(View.VISIBLE);
-                        }else {
-                            textViewnull.setVisibility(View.VISIBLE);
-                            recyclerViewSong.setVisibility(View.GONE);
+                            textSong.setText("Bài hát");
                         }
-                    }
-                }
-            }
 
-            @Override
-            public void onFailure(Call<SearchMulti> call, Throwable t) {
-                Toast.makeText(getActivity(), "Lỗi kết nối", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-    }
-    private void SearchPlaylist(String query){
-        ApiService.apiService.getHomeSearch(query).enqueue(new Callback<SearchMulti>() {
-            @Override
-            public void onResponse(Call<SearchMulti> call, Response<SearchMulti> response) {
-                if (response.isSuccessful()){
-                    SearchMulti searchMulti = response.body();
-                    if (searchMulti != null){
-                        mangplaylist = searchMulti.getPlaylists();
                         if (mangplaylist.size() > 0){
                             playlistHomeAdapter = new PlaylistHomeAdapter(getActivity(), mangplaylist);
                             recyclerViewPlaylist.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
                             recyclerViewPlaylist.setAdapter(playlistHomeAdapter);
-                            textViewnull.setVisibility(View.GONE);
                             recyclerViewPlaylist.setVisibility(View.VISIBLE);
-                        }else {
-                            textViewnull.setVisibility(View.VISIBLE);
-                            recyclerViewPlaylist.setVisibility(View.GONE);
+                            textPlaylist.setText("Danh sách phát");
                         }
-                    }
-                }
-            }
 
-            @Override
-            public void onFailure(Call<SearchMulti> call, Throwable t) {
-                Toast.makeText(getActivity(), "Lỗi kết nối", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void SearchArtist(String query){
-        ApiService.apiService.getHomeSearch(query).enqueue(new Callback<SearchMulti>() {
-            @Override
-            public void onResponse(Call<SearchMulti> call, Response<SearchMulti> response) {
-                if (response.isSuccessful()){
-                    SearchMulti searchMulti = response.body();
-                    if (searchMulti != null){
-                        mangartist = searchMulti.getArtists();
                         if (mangartist.size() > 0){
                             artistAdapter = new ArtistAdapter(getActivity(), mangartist);
                             recyclerViewArtist.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
                             recyclerViewArtist.setAdapter(artistAdapter);
-                            textViewnull.setVisibility(View.GONE);
                             recyclerViewArtist.setVisibility(View.VISIBLE);
-                        }else {
-                            textViewnull.setVisibility(View.VISIBLE);
-                            recyclerViewArtist.setVisibility(View.GONE);
+                            textArtist.setText("Nghệ sĩ");
                         }
+
+
                     }
+                }else {
+                    textViewnull.setVisibility(View.VISIBLE);
+                    imageviewtimkiemnull.setVisibility(View.VISIBLE);
+                    recyclerViewArtist.setVisibility(View.GONE);
+                    recyclerViewPlaylist.setVisibility(View.GONE);
+                    recyclerViewSong.setVisibility(View.GONE);
                 }
+
             }
 
             @Override
@@ -185,5 +153,4 @@ public class FragmentSearch extends Fragment {
             }
         });
     }
-
 }

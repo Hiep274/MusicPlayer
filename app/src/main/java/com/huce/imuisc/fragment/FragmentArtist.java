@@ -54,13 +54,13 @@ public class FragmentArtist extends Fragment {
                         recyclerViewArtist.setLayoutManager(linearLayoutManager);
                         recyclerViewArtist.setAdapter(artistAdapter);
                     } else {
-                        Toast.makeText(getContext(), "Lỗi t", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Không có dữ liệu", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
             @Override
             public void onFailure(@NonNull Call<ArtistHome> call, @NonNull Throwable t) {
-                Toast.makeText(getContext(), "Lỗi", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Error artist : ", Toast.LENGTH_SHORT).show();
             }
         });
     }

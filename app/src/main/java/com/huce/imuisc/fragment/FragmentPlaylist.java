@@ -57,13 +57,13 @@ public class FragmentPlaylist extends Fragment {
                         recyclerViewPlaylist.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
                         recyclerViewPlaylist.setAdapter(playlistAdapter);
                     } else {
-                        Toast.makeText(getContext(), "Lỗi tr", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Không có dữ liệu", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
             @Override
             public void onFailure(@NonNull Call<ArrayList<PlaylistHome>> call, @NonNull Throwable t) {
-                Toast.makeText(getContext(), "Lỗi", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Error playlist : ", Toast.LENGTH_SHORT).show();
             }
         });
 
